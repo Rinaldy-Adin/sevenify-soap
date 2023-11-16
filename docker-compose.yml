@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  soap-service:
+    container_name: server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7000:8080"
+    env_file:
+      - .docker.env
+    depends_on:
+      soap-db:
+        condition: service_healthy
+  soap-db:
+    container_name: db
+    hostname: db
+    ports:
+      - "7001:3306"
+    image: mysql:latest
+    env_file:
+      - .docker.env
+    healthcheck:
+      test: mysqladmin ping -h localhost -u ${MYSQL_USER} -p ${MYSQL_PASSWORD}
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - "./migration/init.sql:/docker-entrypoint-initdb.d/init.sql"
+      - "./mysql:/var/lib/mysql"
