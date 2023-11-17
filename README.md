@@ -12,6 +12,9 @@ SOAP atau Simple Object Access Protocol adalah protokol komunikasi yang digunaka
 3. Buat database sesuai pada `migration\init.sql`
 4. Jalankan project dengan docker : `docker compose up`
 
+## Endpoint API
+SOAP_URL = `http://host.docker.internal:7000/followerservice?wsdl`
+
 ## Pembagian Tugas
 Fungsi Followers : 13521134 <br>
 Logging : 13521134<br>
