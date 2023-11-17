@@ -8,9 +8,8 @@ SOAP atau Simple Object Access Protocol adalah protokol komunikasi yang digunaka
 
 ## Cara Instalasi
 1. Lakukan clone repository ini : `git clone https://github.com/Rinaldy-Adin/sevenify-soap.git`
-2. Konfigurasi project structure untuk include lib jar
-3. Buat database sesuai pada `migration\init.sql`
-4. Jalankan project
+2. Buat database sesuai pada `migration\init.sql`
+3. Jalankan project dengan docker
 
 ## Pembagian Tugas
 Fungsi Followers : 13521134 <br>
