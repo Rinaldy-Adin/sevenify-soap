@@ -2,19 +2,19 @@ version: '3'
 
 services:
   soap-service:
-    container_name: server
+    container_name: sevenify-soap-service
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "7000:8080"
+      - "7000:7000"
     env_file:
       - .docker.env
     depends_on:
       soap-db:
         condition: service_healthy
   soap-db:
-    container_name: db
+    container_name: sevenify-soap-db
     hostname: db
     ports:
       - "7001:3306"

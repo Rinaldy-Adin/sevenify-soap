@@ -17,6 +17,10 @@ public class FollowerService {
         return FollowingsRepository.getPendingFollowers(premiumId);
     }
 
+    public List<Integer> getFollowedIds(int followerId) {
+        return FollowingsRepository.getFollowedUsers(followerId);
+    }
+
     public void unfollow(int premiumId, int followerId) {
         FollowingsModel fm = FollowingsRepository.getFollowing(premiumId, followerId);
 

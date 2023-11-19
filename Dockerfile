@@ -11,4 +11,5 @@ RUN mvn package
 FROM amazoncorretto:8
 COPY --from=build /usr/app /app
 WORKDIR /app
+EXPOSE 7000
 CMD java -jar ./target/SevenifySoap-1.0-SNAPSHOT-jar-with-dependencies.jar

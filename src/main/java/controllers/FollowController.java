@@ -35,7 +35,7 @@ public class FollowController {
     }
 
     @WebMethod
-    public List<Integer> getCurrentFollowerIds(@WebParam(name = "premiumId") int premiumId, @WebParam(name = "apikey", header = true) String apiKey) throws ApiException {
+    public List<Integer> getCurrentFollowerIds(@WebParam(name = "premiumId") int premiumId, @WebParam(name = "apikey", header = true) String apiKey) {
         MessageContext messageContext = wsContext.getMessageContext();
         LoggingMiddleware.log(messageContext, "Get current followers of premium user", "/getcurrentfollowerids");
 
@@ -44,6 +44,18 @@ public class FollowController {
         }
 
         return followerService.getCurrentFollowerIds(premiumId);
+    }
+
+    @WebMethod
+    public List<Integer> getCurrentFollowedIds(@WebParam(name = "followerId") int followerId, @WebParam(name = "apikey", header = true) String apiKey) {
+        MessageContext messageContext = wsContext.getMessageContext();
+        LoggingMiddleware.log(messageContext, "Get premium users who are followed", "/getcurrentfollowedids");
+
+        if (!AuthMiddleware.isAuthenticated(apiKey)) {
+            throw new ApiException(ApiResponse.UNAUTHORIZED);
+        }
+
+        return followerService.getFollowedIds(followerId);
     }
 
     @WebMethod
